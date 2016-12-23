@@ -5,7 +5,7 @@
         <input type="text" placeholder="New item" @keyup.enter="addItem">
       </header>
       <section class="main">
-        <tree></tree>
+        <tree v-bind:list="treeList"></tree>
       </section>
     </section>
   </div>
@@ -14,10 +14,28 @@
 <script>
   import Tree from './components/Tree'
 
+  const treeList = [
+    {
+      label: 'Financeiro',
+      children: [
+        { label: 'Contas a pagar' },
+        { label: 'Contas a receber' },
+        { label: 'Sem classificação', children: [{ label: 'Energia' }] }
+      ]
+    },
+    { label: 'Infra' },
+    { label: 'Desenvolvimento', children: [{ label: 'Java' }, { label: 'Javascript' }] }
+  ]
+
   export default {
     name: 'app',
     components: {
       Tree
+    },
+    data() {
+      return {
+        treeList: treeList
+      }
     },
     methods: {
       addItem(event) {

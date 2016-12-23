@@ -9,6 +9,10 @@
   import store from '../store'
 
   export default {
+    props: ['list'],
+    mounted() {
+      store.commit('RECEIVE_LIST', { list: this.list })
+    },
     computed: {
       treeList() {
         return store.state.treeList
